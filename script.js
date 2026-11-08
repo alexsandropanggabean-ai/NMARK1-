@@ -1,25 +1,21 @@
-const player = document.getElementById("player");
+// Mengambil elemen dari HTML
+const startButton = document.getElementById("startButton");
+const message = document.getElementById("message");
 
-let playerX = 50;
-let playerY = 50;
-let speed = 2;
+// Status permainan
+let gameStarted = false;
 
-function movePlayer(direction) {
-    if (!gameStarted) return;
+// Fungsi tombol mulai
+startButton.addEventListener("click", function() {
 
-    if (direction === "up") playerY -= speed;
-    if (direction === "down") playerY += speed;
-    if (direction === "left") playerX -= speed;
-    if (direction === "right") playerX += speed;
+    if (gameStarted === true) {
+        return;
+    }
 
-    playerX = Math.max(3, Math.min(97, playerX));
-    playerY = Math.max(5, Math.min(95, playerY));
+    gameStarted = true;
 
-    player.style.left = playerX + "%";
-    player.style.top = playerY + "%";
-}
+    message.textContent = "Hari 1 dimulai. Bertahanlah!";
+    startButton.textContent = "PERMAINAN DIMULAI";
+    startButton.disabled = true;
 
-document.getElementById("up").onclick = () => movePlayer("up");
-document.getElementById("down").onclick = () => movePlayer("down");
-document.getElementById("left").onclick = () => movePlayer("left");
-document.getElementById("right").onclick = () => movePlayer("right");
+});
